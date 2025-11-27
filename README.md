@@ -61,6 +61,8 @@ This scenario involves the following key objectives:
 ![Trip Approval Ontology ERD](images/ontology.png)
    
 ### Knowledge Graph Implementation by relational Database
+For the prototype, I model the ontology as a lightweight semantic schema stored in a relational structure.
+In the full thesis, this can be replaced with a proper RDF/graph store (Neo4j / GraphDB)
 1. Tables: Employees, TripRequests, Managers, ApprovalDecisions, CompanyPolicies, Budgets, Entitlements.
 2. Relationships: Foreign keys to represent relationships between entities (e.g., TripRequests linked to Employees and Managers).
 3. Semantic reasoning: Implement rules and constraints to evaluate trip requests based on policies, budgets, and entitlements.
@@ -72,6 +74,10 @@ This scenario involves the following key objectives:
 3. ApprovalAgent coordinates with PolicyAgent, BudgetAgent, and EntitlementAgent to evaluate requests.
 4. Each agent uses the knowledge graph database to access relevant data and make decisions.
 5. Agents log their reasoning steps and decisions for explainability.
+**Example Explanation Output:**
+Trip denied because the estimated cost (4000 SEK) exceeds the employee entitlement (2500 SEK) and violates company policy rule P3.
+
+This is the type of human-readable explanation that the control layer will display, showing the key factors behind the decision.
 
 ![Multi Agent System](images/multi_agent_system.png)
 
