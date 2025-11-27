@@ -2,36 +2,26 @@
 
 ## Introduction
 ### Background
-The Decision-Making Group is developing two complementary AI frameworks that push the frontier of
-enterprise decision automation:
-1. an ontology-driven knowledge graph (KG) architecture combined with multi-agent semantic
-reasoning for reliable decision-making, and
-2. a dynamic multi-agent system capable of progressive expert-level upskilling, enabling adaptive
-execution of complex tasks requiring human-like (micro)decisions.
+Modern enterprise decision systems increasingly rely on semantic knowledge graphs and multi-agent reasoning frameworks. These systems can analyze policies, budgets, and operational constraints, and make human-like decisions through coordinated agent behavior.
+However, for real-world adoption, organizations require **transparency**, **auditability**, and **human oversight** over automated decisions.
+### Thesis Goal
+This project aims to design and prototype an **XAI-driven control layer** that exposes the internal reasoning of a semantic decision-making system.
+The goal is to provide:
+    - human-readable explanations,
 
-Together, these systems aim to create AI assistants that can reason, coordinate, learn, and execute
-decisions in a structured and interpretable way. However, for enterprise adoption, advanced backend
-intelligence is not enough. Organizations require transparency, oversight, and user-centered control over
-autonomous agents and semantic decision engines.  
-A major open challenge in the field is how to expose complex semantic reasoning, highlight the most
-relevant explanations, and offer meaningful human control over automated decision flows, without
-overwhelming users with unnecessary detail. This thesis addresses this gap by building an explainability-
-driven interaction and control layer that unifies and exposes the capabilities of the systems.
-### Thesis Description
-This thesis will design and implement a web-based control and explainability layer that enables enterprise
-users to supervise, understand, and interact with semantic reasoning decision systems. The layer will
-integrate outputs from the ontology-driven decision-support system and the dynamic multi-agent
-upskilling architecture, forming a unified interface for operating AI decision makers and executors.
-The project will focus on practical UX design, explainability exposure, and progressive disclosure of
-reasoning, allowing users to explore decision traces, conflict resolution, and KG–based inference paths.
-The following steps are envisioned as part of the thesis work:
-1. Conduct a structured review of explainability frameworks, semantic reasoning interfaces, and
-human-in-the-loop control models for multi-agent systems.
-2. Design UX flows and interaction patterns for exposing reasoning steps, decision chains, KG
-insights, and multi-agent behaviors.
-3. Develop a unified API layer that integrates reasoning outputs, agent states, and execution logs.
-4. Implement an interactive web platform that enables users to: inspect reasoning paths; monitor
-conflicts; access prioritized XAI explanations and supervise or override decisions.
+    - conflict detection and resolution insights,
+
+    - structured decision traces,
+
+    - and an interface for supervising or overriding agent decisions.
+
+This prototype integrates:
+
+    1. a lightweight ontology/knowledge graph,
+
+    2. a multi-agent reasoning system, and
+
+    3. an explainability + control interface.
 
 ## Goal
 In this Architectural Solution document, I assume a **_hypothetical scenario_** where the goal is to design an **explainable Agentic AI Control Layer** that allows users to understand and interact with autonomous agents making complex decisions. 
