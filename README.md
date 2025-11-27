@@ -2,28 +2,37 @@
 
 ## Introduction
 ### Background
-Modern enterprise decision systems increasingly rely on semantic knowledge graphs and multi-agent reasoning frameworks. These systems can analyze policies, budgets, and operational constraints, and make human-like decisions through coordinated agent behavior.
-However, for real-world adoption, organizations require **transparency**, **auditability**, and **human oversight** over automated decisions.
+The Decision-Making Group is developing two complementary AI frameworks:
+1. **An ontology-driven knowledge graph (KG) architecture** combined with multi-agent semantic reasoning for reliable decision-making.  
+2. **A dynamic multi-agent system** capable of progressive expert-level upskilling, enabling adaptive execution of complex tasks requiring human-like micro-decisions.
+
+Together, these systems aim to enable enterprise AI assistants that can reason, coordinate, learn, and execute decisions in a structured and interpretable way.
+
+However, enterprise adoption requires more than backend intelligence. Organizations need:
+- transparency into automated reasoning,  
+- meaningful human oversight, and  
+- user-centered control over semantic decision systems.
+
+A major challenge is how to expose complex reasoning, highlight the most relevant explanations, and provide intuitive human control — **without overwhelming users**.
+
 ### Thesis Goal
-This project aims to design and prototype an **XAI-driven control layer** that exposes the internal reasoning of a semantic decision-making system.
-The goal is to provide:
-    - human-readable explanations,
+This thesis aims to design and prototype an **XAI-driven control layer** that unifies and exposes the capabilities of semantic reasoning and multi-agent decision systems.
 
-    - conflict detection and resolution insights,
+The objective is to provide:
+- human-readable explanations,  
+- progressive disclosure of reasoning,  
+- conflict detection and resolution insights,  
+- structured decision traces, and  
+- a web interface for supervising or overriding automated decisions.
 
-    - structured decision traces,
+The prototype integrates:
+1. an ontology / knowledge graph,  
+2. a multi-agent reasoning architecture,  
+3. an explainability data layer, and  
+4. a web-based interaction and control interface.
 
-    - and an interface for supervising or overriding agent decisions.
 
-This prototype integrates:
-
-    1. a lightweight ontology/knowledge graph,
-
-    2. a multi-agent reasoning system, and
-
-    3. an explainability + control interface.
-
-## Goal
+## Goal of the Document
 In this Architectural Solution document, I assume a **_hypothetical scenario_** where the goal is to design an **explainable Agentic AI Control Layer** that allows users to understand and interact with autonomous agents making complex decisions. 
 This scenario involves the following key objectives:
 1. Design a domain ontology that captures the relevant concepts, relationships, and decision-making criteria for the agents.
@@ -32,66 +41,94 @@ This scenario involves the following key objectives:
 4. Design an explainability layer that exposes the reasoning processes of the agents, allowing users to inspect decision paths, conflicts, and explanations.
 5. Design a web-based interface that enables users to interact with the agents, monitor their actions, and provide feedback or overrides.
 
-## Employee Trip Budget Approval (the hypothetical scenario)
+## Hypothetical Scenario: Employee Trip Budget Approval
+To illustrate how the architectural solution works, a hypothetical scenario is introduced.  
+This scenario is **not part of the thesis description** but is used to demonstrate design choices.
+
 ### Scenario Description
 1. In this scenario, we have an enterprise system where employees can submit trip requests for business travel.  
-2. Each trip request includes details such as employee ID, destination, duration, purpose, and estimated costs.
-3. Managers are responsible for reviewing and approving these trip requests based on company policies, budget constraints, and individual employee entitlements.
-4. The system should provide transparency into the decision-making process, allowing employees and managers to understand why certain requests were approved or denied (Explainability).
+2. Each trip request includes details such as employee ID, destination, duration, purpose, and estimated cost.
+3. Managers approve or deny based on company policies, budgets, and entitlements.  
+4. The system should provide clear explanations for why decisions were approved or denied.
 ### Ontology Design
 #### Why Ontology?
-1. An ontology provides a structured representation of the key concepts and relationships in the trip approval domain
-2. It enables semantic reasoning by defining classes, properties, and constraints that capture the decision-making criteria.
-3. It facilitates interoperability and knowledge sharing among different agents and components in the system.
+1. Provides a structured representation of the domain.  
+2. Enables semantic reasoning through classes, relationships, and constraints.  
+3. Ensures consistency and interoperability across agents.
 #### Ontology Components
-1. Key concepts: Employee, TripRequest, Manager, ApprovalDecision, CompanyPolicy, Budget, Entitlement.
-2. Relationships: Employee submits TripRequest; Manager reviews TripRequest; ApprovalDecision is based on CompanyPolicy, Budget, and Entitlement.
+1. Core concepts: Employee, TripRequest, Manager, ApprovalDecision, CompanyPolicy, Budget, Entitlement  
+2. Relationships such as:
+   - Employee submits TripRequest  
+   - Manager reviews TripRequest  
+   - ApprovalDecision depends on Policy, Budget, and Entitlement  
 3. Entity Relationship Diagram (ERD):
 
 ![Trip Approval Ontology ERD](images/ontology.png)
    
-### Knowledge Graph Implementation by relational Database
-For the prototype, I model the ontology as a lightweight semantic schema stored in a relational structure.
-In the full thesis, this can be replaced with a proper RDF/graph store (Neo4j / GraphDB)
-1. Tables: Employees, TripRequests, Managers, ApprovalDecisions, CompanyPolicies, Budgets, Entitlements.
-2. Relationships: Foreign keys to represent relationships between entities (e.g., TripRequests linked to Employees and Managers).
-3. Semantic reasoning: Implement rules and constraints to evaluate trip requests based on policies, budgets, and entitlements.
-4. Example of relational databases: MySQL, Oracle, and etc.
-
+### Knowledge Graph Implementation (Relational Prototype)
+For the prototype, the ontology is implemented as a **lightweight semantic schema** using a relational database.  
+In a full thesis implementation, this can evolve into an RDF or graph database (Neo4j, GraphDB).
+1. Tables: Employees, TripRequests, Policies, Budgets, Entitlements  
+2. Foreign keys represent relationships  
+3. Rules and constraints support semantic reasoning  
+4. Compatible relational DBs: MySQL, PostgreSQL, Oracle  
+   
 ### Multi-Agent System
-1. Agents: TripRequestAgent, ApprovalAgent, PolicyAgent, BudgetAgent, EntitlementAgent.
-2. TripRequestAgent collects trip requests and forwards them to ApprovalAgent. 
-3. ApprovalAgent coordinates with PolicyAgent, BudgetAgent, and EntitlementAgent to evaluate requests.
-4. Each agent uses the knowledge graph database to access relevant data and make decisions.
-5. Agents log their reasoning steps and decisions for explainability.
+### Agent Roles
+- **TripRequestAgent** – collects and registers trip requests  
+- **ApprovalAgent** – orchestrates evaluation and resolves conflicts  
+- **PolicyAgent** – checks policy rules  
+- **BudgetAgent** – checks cost vs budget  
+- **EntitlementAgent** – checks employee entitlement limits  
+
+Agents:
+- access KG data  
+- perform domain-specific reasoning  
+- log their steps for explainability  
+  
 **Example Explanation Output:**
-Trip denied because the estimated cost (4000 SEK) exceeds the employee entitlement (2500 SEK) and violates company policy rule P3.
+
+    **Trip denied** because the estimated cost (4000 SEK) exceeds the employee entitlement (2500 SEK) and violates company policy rule P3.
 
 This is the type of human-readable explanation that the control layer will display, showing the key factors behind the decision.
 
 ![Multi Agent System](images/multi_agent_system.png)
 
-### Dig into a sample Agent (TripRequestAgent)
+## End-to-End Decision Flow (Mini Demo)
+
+1. Employee submits a trip request  
+2. TripRequestAgent stores it in the KG  
+3. ApprovalAgent requests evaluations from PolicyAgent, BudgetAgent, and EntitlementAgent  
+4. Example conflict:
+   - PolicyAgent → Approved  
+   - BudgetAgent → Rejected  
+5. Explainability layer logs reasoning and conflict resolution  
+6. Manager reviews explanation and can override  
+7. Override is logged for audit and agent upskilling  
+
+## TripRequestAgent (Deep Dive)
 In this section, we will explore the architecture and functionality of the TripRequestAgent.
 
 
 ![Trip_Request_AI_Agent](images/Trip_Request_AI_Agent.png)
-This diagram illustrates the internal components and workflow of the TripRequestAgent:
-1. How AI Agent interacts with the Explainability Database to log decision traces.
-2. How AI Agent communicate with LLM includes tools calling to enhance decision-making.
-3. The logs and decision traces are stored in the Explainability Database for later retrieval and analysis.
 
+Functions of the TripRequestAgent:
+- logs reasoning steps into the Explainability Database  
+- interacts with an LLM through tool-calling  
+- enables detailed analysis and review of decision traces  
 
-### Explainability Layer
-1. Capture decision paths: Each agent records the reasoning steps taken to arrive at a decision.
-2. Conflict resolution: Highlight any conflicts between agents and how they were resolved.
-3. Prioritized explanations: Generate human-readable explanations for each decision, focusing on the most relevant factors.
-4. Progressive disclosure: Allow users to explore explanations at different levels of detail.
+## Explainability Layer
+The explainability layer provides:
+1. Decision path capture  
+2. Conflict detection and resolution  
+3. Prioritized, human-readable explanations  
+4. Progressive disclosure of reasoning steps  
 
 ### Explainability Data Model
-1. DecisionTrace: Records the sequence of reasoning steps taken by agents.
-2. ConflictRecord: Captures conflicts between agents and their resolutions.
-3. Session: Each request and its associated decision traces and explanations.
+Core structures:
+- **DecisionTrace** – the reasoning sequence  
+- **ConflictRecord** – disagreements + resolutions  
+- **Session** – the request container with all explanations and traces  
 
 ![Explainability_Data_Model](images/Explainability_Data_Model.png)
 
