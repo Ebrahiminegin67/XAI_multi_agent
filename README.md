@@ -1,7 +1,7 @@
 # Architectural Solution for Explainable Agentic AI Control Layer
 
 ## Introduction
-### Background
+### Backgroun
 The Decision-Making Group is developing two complementary AI frameworks that push the frontier of
 enterprise decision automation:
 1. an ontology-driven knowledge graph (KG) architecture combined with multi-agent semantic
