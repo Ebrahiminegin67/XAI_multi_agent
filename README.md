@@ -166,8 +166,10 @@ Machine learning can significantly reduce these disruptions by analyzing explain
 ![ML_Model](images/CNN_Model.png)
 
 ### Benefits:
-- Finding the Root Cause of Conflicts Using ML Features
-- How Conflict Prediction Improves the Multi-Agent System
+- Finding the root cause of conflicts using ML features
+- Improving the Multi-Agent system by conflict prediction 
+
+---
 
 ### Finding the Root Cause of Conflicts Using ML Features
 
