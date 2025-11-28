@@ -66,11 +66,11 @@ This scenario is **not part of the thesis description** but is used to demonstra
    
 ### Knowledge Graph Implementation (Relational Prototype)
 For the prototype, the ontology is implemented as a **lightweight semantic schema** using a relational database.  
-In a full thesis implementation, this can evolve into an RDF or graph database (Neo4j, GraphDB).
+
 1. Tables: Employees, TripRequests, Policies, Budgets, Entitlements  
 2. Foreign keys represent relationships  
 3. Rules and constraints support semantic reasoning  
-4. Compatible relational DBs: MySQL, PostgreSQL, Oracle  
+4. Compatible relational DBs: MySQL, Oracle  
    
 ### Multi-Agent System
 ### Agent Roles
