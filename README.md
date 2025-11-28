@@ -87,7 +87,7 @@ Agents:
   
 **Example Explanation Output:**
 
-    **Trip denied** because the estimated cost (4000 SEK) exceeds the employee entitlement (2500 SEK) and violates company policy rule P3.
+**Trip denied** because the estimated cost (4000 SEK) exceeds the employee entitlement (2500 SEK) and violates company policy rule P3.
 
 This is the type of human-readable explanation that the control layer will display, showing the key factors behind the decision.
 
