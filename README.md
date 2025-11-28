@@ -38,6 +38,7 @@ This scenario involves the following key objectives:
 3. Design a multi-agent system where agents can autonomously make decisions based on the KG and progressively upskill their expertise.
 4. Design an explainability layer that exposes the reasoning processes of the agents, allowing users to inspect decision paths, conflicts, and explanations.
 5. Design a web-based interface that enables users to interact with the agents, monitor their actions, and provide feedback or overrides.
+6. Conflict Prediction by Machine Learning
 
 ## Hypothetical Scenario: Employee Trip Budget Approval
 To illustrate how the architectural solution works, a hypothetical scenario is introduced.  
@@ -140,18 +141,18 @@ Core structures:
 ### Agent Details View
 ![Agent_Details_View](images/Agent_Details.png)
 
+# Furthur Works
+## Conflict Prediction by Machine Learning
 
-# Conflict Prediction by Machine Learning
-
-## Goal
+### Goal
 The goal of conflict prediction is to enable a multi-agent decision system to **anticipate agent disagreements before they occur**, based on historical explainability logs, semantic evidence patterns, and contextual features about each session. By predicting conflicts early, the system can proactively request missing data, adjust workflows, and reduce costly escalations.
 
 ---
 
-## Introduction
+### Introduction
 In a semantic multi-agent architecture (e.g., TripRequestAgent, PolicyAgent, BudgetAgent, EntitlementAgent), conflicts arise when agents reach **contradictory conclusions** or when key evidence in the Knowledge Graph (KG) is missing or inconsistent.
 
-### Examples of conflicts:
+#### Examples of conflicts:
 - **PolicyAgent says compliant**, but **BudgetAgent says over budget**
 - **EntitlementAgent says allowed**, but **PolicyAgent flags a rule violation**
 - Agents evaluating the same request using different assumptions
@@ -160,18 +161,18 @@ Such conflicts frequently lead to manual review, additional agent calls, or user
 Machine learning can significantly reduce these disruptions by analyzing explainability logs and learning **patterns that precede conflicts**, enabling predictive detection before the disagreement occurs.
 
 ---
-## Finding the Root Cause of Conflicts Using ML Features
+### Finding the Root Cause of Conflicts Using ML Features
 
 Machine learning helps identify **why** conflicts occur by analyzing feature importance and SHAP values.
 
-### Example root-cause contributions:
+#### Example root-cause contributions:
 - **Cost > department maxCost** → +0.31 to conflict probability  
 - **Remaining budget < estimated trip cost** → +0.27  
 - **Missing entitlement_level field** → +0.15  
 - **High destination risk** → +0.12  
 - **Department with historically high conflict rates** → +0.08  
 
-### Benefits:
+#### Benefits:
 - **Automated root-cause analysis**  
   Conflict likely due to remaining budget shortage.
 
@@ -183,9 +184,9 @@ Machine learning helps identify **why** conflicts occur by analyzing feature imp
 
 ---
 
-## How Conflict Prediction Improves the Multi-Agent System
+### How Conflict Prediction Improves the Multi-Agent System
 
-### 1. Preventive Workflow Optimization
+#### 1. Preventive Workflow Optimization
 If the model predicts a high probability of conflict, the orchestrator can:
 - Reorder agents  
 - Parallelize or skip certain evaluations  
@@ -193,16 +194,16 @@ If the model predicts a high probability of conflict, the orchestrator can:
 
 This yields faster decisions and lowers system load.
 
-### 2. Early Detection of Semantic Data Issues
+#### 2. Early Detection of Semantic Data Issues
 Many conflicts comes from missing or inconsistent KG attributes (e.g., null budget values, outdated entitlements).  
 Conflict prediction highlights these risky sessions *before* agents disagree, allowing the system to sanitize data or fetch missing evidence.
 
-### 3. Reduced Human Overrides
+#### 3. Reduced Human Overrides
 By avoiding predictable conflicts, fewer sessions require human review, improving system autonomy and trust.
 
 ---
 
-## Conclusion
+### Conclusion
 By leveraging explainability logs and session metadata, conflict prediction becomes a powerful mechanism for making multi-agent systems more adaptive, efficient, and transparent. It enables proactive decision-making, reduces redundant conflict resolution, and provides actionable insights that improve both data quality and agent behavior.
 
 This transforms conflict handling from a reactive process into an **anticipatory, intelligent capability**—boosting reliability and enterprise readiness of complex agentic systems.
