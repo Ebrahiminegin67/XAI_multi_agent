@@ -13,8 +13,8 @@ However, enterprise adoption requires more than backend intelligence. Organizati
 
 A major challenge is how to expose complex reasoning, highlight the most relevant explanations, and provide intuitive human control — **without overwhelming users**.
 
-### Thesis Goal
-This thesis aims to design and prototype an **XAI-driven control layer** that unifies and exposes the capabilities of semantic reasoning and multi-agent decision systems.
+### Project Goal
+This project aims to design and prototype an **XAI-driven control layer** that unifies and exposes the capabilities of semantic reasoning and multi-agent decision systems.
 
 The objective is to provide:
 - human-readable explanations,  
