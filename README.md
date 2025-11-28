@@ -161,6 +161,10 @@ Such conflicts frequently lead to manual review, additional agent calls, or user
 Machine learning can significantly reduce these disruptions by analyzing explainability logs and learning **patterns that precede conflicts**, enabling predictive detection before the disagreement occurs.
 
 ---
+### Machine Learning Convolutional Neural Network
+
+![ML_Model](images/CNN_Model.png)
+
 ### Finding the Root Cause of Conflicts Using ML Features
 
 Machine learning helps identify **why** conflicts occur by analyzing feature importance and SHAP values.
